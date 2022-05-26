@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：shiyan7
+  File name(文件名): test1
+  Authors(作者）: 27524
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/5/26
+  Time(创建时间)： 11:11
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <style>
+        div.div {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        button {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="div" :style="'background-color:'+color">
+        <button @click="changeColor('yellow')">更改为黄色</button>
+        <button @click="changeColor('red')">更改为红色</button>
+        <button @click="changeColor('green')">更改为绿色</button>
+        <button @click="changeColor('blue')">更改为蓝色</button>
+
+    </div>
+</div>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            color: "red",
+        },
+        methods: {
+            changeColor: function (color)
+            {
+                this.color = color;
+                this.save();
+            },
+            save: function ()
+            {
+                localStorage.color = this.color;
+            },
+            load: function ()
+            {
+                this.color = localStorage.color;
+            }
+        },
+        mounted()
+        {
+            this.load();
+        }
+    })
+</script>
+
+</body>
+</html>

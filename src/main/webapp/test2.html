@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：task7
+  File name(文件名): test2
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/5/26
+  Time(创建时间)： 17:28
+  Description(描述)： 无
+-->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基于Web存储技术的网页主题设置</title>
+    <link rel="stylesheet" href="css/animate.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="big">
+    <div id="demo" style="display:flex;width:100%;height:200px;align-items: center;
+                justify-content: center; color: white ;font-size:60px">HTML5 Web存储示例
+    </div>
+
+
+    <div style="position: absolute; left:50%;top:50%;  transform: translate(-50%, -50%); width: 50%;height: 200px;">
+        <div class="animated bounceInDown">
+            <div id="frame" style="background-color: #EEEEEE;height: 200px;">
+                <form action="">
+                    <div style="height: 30px"></div>
+                    <div id="page" style=" display:flex;width:100%; align-items: center;
+                justify-content: center;color: white ">页面设置
+                    </div>
+                    <div style=" display:flex;width:100%; align-items: center;
+                justify-content: center;">主题颜色为:
+                        <label for="color">主题颜色为:</label>
+                        <select name="" id="color">
+                            <option selected="selected" value="red">red</option>
+                            <option value="green">green</option>
+                            <option value="blue">blue</option>
+                            <option value="orange">orange</option>
+                            <option value="purple">purple</option>
+                        </select>
+                    </div>
+                    <br>
+
+                    <div style="display:flex;width:100%; align-items: center;
+                justify-content: center;">
+
+                        <button style="font-size: 20px;" onclick="saveLocal()">保存并设置</button>
+                    </div>
+                    <div id="page2"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    let page = document.getElementById('page');
+    let demo = document.getElementById('demo');
+    let bottom = document.getElementById('bottom');
+
+    function saveLocal()
+    {
+        var color = document.getElementById('color').value;
+        //alert("数据已保存到localstorage，当前颜色:" + color)
+        localStorage.setItem('color', color);
+    }
+
+    var pageColor = localStorage.getItem('color');
+    page.style.backgroundColor = pageColor;
+    demo.style.backgroundColor = pageColor;
+</script>
+</body>
+
+</html>
+
