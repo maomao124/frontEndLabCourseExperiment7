@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<!--
+Project name(项目名称)：task7
+  File name(文件名): test3
+  Authors(作者）: mao
+  Author QQ：1296193245
+  GitHub：https://github.com/maomao124/
+  Date(创建日期)： 2022/5/26
+  Time(创建时间)： 17:29
+  Description(描述)： 无
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基于Web存储技术的网页日志本</title>
+</head>
+
+<body>
+<div style="display: flex;width:200px;height:20px;margin: auto; font-size: 24px">我的日志本</div>
+<br>
+<div style="display: flex;width:200px;height:20px;margin: auto;font-size: 20px"> 开始写日志</div>
+<br>
+<form action="">
+    <div style=" width: 80%;height: 300px;display: flex;margin: auto">
+        <input type="text" id="testData" style="width: 100%;height: 100%">
+    </div>
+    <br>
+    <div style="display: flex;width:400px;height:50px;margin: auto">
+        <input type="button" value="保存日志" style="width: 150px;height: 30px" onclick="addData()">
+        &nbsp
+        <input type="button" value="删除全部日志" style="width: 150px;height: 30px" onclick="deleteItems()">
+    </div>
+
+</form>
+<div style="display: flex;width:200px;height:20px;margin: auto; font-size: 24px">历史记录：</div>
+<br><br>
+<div style="display: flex;width:80%;height:auto;margin: auto;">
+    <table id="allData" border="1"></table>
+</div>
+
+</body>
+<script>
+    var allData = document.getElementById("allData");
+    refreshData(); ///刷新数据显示
+    function refreshData()
+    {
+        var length = localStorage.length;
+        if (length == 0)
+        {
+            allData.innerHTML = "目前暂无数据："
+        }
+        else
+        {
+            allData.innerHTML = "<tr><th>序号</th><th>目标内容</th><th>保存时间</th><th>操作</th></tr>"
+            for (var i = 0; i < length; i++)
+            {
+                var j = i + 1;
+                var tr = document.createElement("tr");
+                var name = localStorage.key(i);
+                console.log(name);
+
+                tr.innerHTML = '<td>' + j + '</td><td>' + name + '</td><td>' + localStorage.getItem(name) +
+                    '</td><td><button onclick="delData(' + i + ')">删除</button></td>';
+                // '</td><td><button οnclick="delData(' + i + ')">deldete</buttoon></td>';
+                allData.appendChild(tr);
+            }
+        }
+    }
+
+    function addData()
+    {
+        var length = localStorage.length;
+        var n = length + 1;
+        var test = document.getElementById('testData');
+        var value = test.value;
+        var now = new Date();
+        var keytime = now.toLocaleString();
+        localStorage.setItem(value, keytime);
+        test.value = ""; //输入框为空 再刷新一次页面
+        refreshData();
+    }
+
+    function delData(n)
+    {
+        var name = localStorage.key(n);
+        localStorage.removeItem(name);
+        refreshData();
+    }
+
+    function deleteItems()
+    {
+        localStorage.clear();
+        refreshData();
+    }
+</script>
+
+</html>
