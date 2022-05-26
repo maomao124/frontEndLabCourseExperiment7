@@ -25,7 +25,7 @@
 
 <div class="p">
     <div class="animated shake">
-        <%int n = 2;%>
+        <%int n = 3;%>
         <%
             for (int i = 0; i < n; i++)
             {
